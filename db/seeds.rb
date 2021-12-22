@@ -1,3 +1,9 @@
+puts "Deleting previous seed data..."
+Company.destroy_all
+Dev.destroy_all
+Freebie.destroy_all
+puts "Deletion completed."
+
 puts "Creating companies..."
 Company.create(name: "Google", founding_year: 1998)
 Company.create(name: "Facebook", founding_year: 2004)
@@ -12,10 +18,16 @@ Dev.create(name: "Gazorpazop")
 
 puts "Creating freebies..."
 
+
 # ***************************************************************
 # * TODO: create freebies! Remember, a freebie belongs to a dev *
 # * and a freebie belongs to a company.                         *
 # ***************************************************************
 # Create freebies Here
+
+
+50.times do
+    Freebie.create(item_name: Faker::Hipster.word, value: rand(3...15), company: Company.all.sample, dev: Dev.all.sample)
+end
 
 puts "Seeding done!"
